@@ -46,6 +46,8 @@ Run the Scripts file (pdf.py)
 This script converts specific pages of a PDF file into JPEG images.
 
 ```
+pdf.py
+
 from pdf2image import convert_from_path
 from pathlib import Path
 
