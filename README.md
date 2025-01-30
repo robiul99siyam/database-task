@@ -1,8 +1,17 @@
 # 🔐 Database Management Task
 ## Description
-This task is a Database management . It includes features for pdt to convert image, ms word file to convert excel file
+
+This project is a database management utility that includes features for converting PDF files to images and extracting data from MS Word files to Excel sheets. It is designed to streamline document processing tasks
+
 ## Technologies Used
-- Python , excel, ms word
+- Python: Core programming language for scripting
+- Excel: For storing extracted data in a structured format
+- MS Word: For reading and processing document content.
+
+## Libraries
+- pdf2image: For converting PDF pages to images.
+- python-docx: For reading MS Word files.
+- pandas: For handling data and exporting to Excel.
 
   
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
@@ -25,7 +34,8 @@ venv\Scripts\activate
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-# Create Pdf To Image convert Scripts
+# 📄 PDF to Image Conversion Script
+This script converts specific pages of a PDF file into JPEG images.
 
 ```
 from pdf2image import convert_from_path
@@ -43,3 +53,51 @@ for i, image in enumerate(images,start=25):
 
 print("25 to 50 page create image successfully")
 ```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+
+# 📑 Insert Data from MS Word to Excel Sheet
+This script extracts data from an MS Word file and inserts it into an Excel sheet.
+```
+
+# import the module 
+from docx import Document
+import pandas as pd
+import re
+
+
+docx = Document("data.docx")
+
+
+text_value = []
+
+for value in docx.paragraphs:
+    text = value.text.strip()
+
+    match = re.match(r"\[(\d+)\]\s*(.*)",text)
+
+    if match:
+        Value_id = match.group(1)
+        Value_content =  match.group(2).strip()
+
+        text_value.append([Value_id,Value_content])
+
+
+df = pd.DataFrame(text_value,columns=['ID',"CONTENT"])
+df.to_excel("hadis.xlsx",index=False)
+
+```
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+# 🛠️ Requirements
+
+```
+pdf2image
+python-docx
+pandas
+```
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
