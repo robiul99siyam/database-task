@@ -108,7 +108,7 @@ df.to_excel("hadis.xlsx",index=False)
 
 ```
 pdf2image
-python-docx
+python3-docx
 pandas
 ```
 
