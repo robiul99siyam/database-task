@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ```
 
 ``` 
-Run the Scripts file (pdf.py)
+Run the Scripts file 
 ```
 
 
@@ -70,6 +70,8 @@ print("25 to 50 page create image successfully")
 
 # 📑 Insert Data from MS Word to Excel Sheet
 This script extracts data from an MS Word file and inserts it into an Excel sheet.
+
+- excel.py
 ```
 
 # import the module 
